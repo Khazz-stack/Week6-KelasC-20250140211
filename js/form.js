@@ -1,6 +1,3 @@
-// ===== Tab + Form patungan: DOM & Event Handling =====
-
-// ---- Tab ----
 const tabs = document.querySelectorAll(".tab");
 tabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
@@ -11,7 +8,7 @@ tabs.forEach(function (tab) {
     });
 });
 
-// ---- Elemen form ----
+
 const form = document.getElementById("form-bagi");
 const fAcara = document.getElementById("acara");
 const fTotal = document.getElementById("total");
@@ -25,7 +22,7 @@ const daftarRiwayat = document.getElementById("riwayat");
 
 const rupiah = (n) => "Rp " + new Intl.NumberFormat("id-ID").format(n);
 
-// ---- Validasi ----
+
 function tampilError(input, pesan) {
     document.getElementById("salah-" + input.id).textContent = pesan;
     input.classList.toggle("salah-input", pesan !== "");
@@ -51,7 +48,7 @@ function cekOrang() {
     return tampilError(fOrang, pesan);
 }
 
-// ---- Perhitungan ----
+
 function hitung() {
     const total = Number(fTotal.value);
     const orang = Number(fOrang.value);
@@ -77,7 +74,7 @@ function perbaruiHasil() {
         rupiah(h.total) + " + tip " + h.tip + "% = " + rupiah(Math.round(h.totalAkhir)) + ", dibagi " + h.orang + " orang";
 }
 
-// ---- Event: input langsung ----
+
 [fTotal, fOrang, fTip].forEach((el) => el.addEventListener("input", perbaruiHasil));
 fBulat.addEventListener("change", perbaruiHasil);
 fAcara.addEventListener("blur", cekAcara);
@@ -87,7 +84,7 @@ fAcara.addEventListener("input", () => fAcara.classList.contains("salah-input") 
 fTotal.addEventListener("input", () => fTotal.classList.contains("salah-input") && cekTotal());
 fOrang.addEventListener("input", () => fOrang.classList.contains("salah-input") && cekOrang());
 
-// ---- Event: submit ----
+
 form.addEventListener("submit", function (e) {
     e.preventDefault();
     const valid = [cekAcara(), cekTotal(), cekOrang()].every(Boolean);
@@ -122,7 +119,7 @@ function tambahRiwayat(nama, h) {
     daftarRiwayat.prepend(li);
 }
 
-// ---- Event delegation: satu listener untuk semua tombol Hapus ----
+
 daftarRiwayat.addEventListener("click", function (e) {
     if (e.target.dataset.aksi !== "hapus") return;
     e.target.closest("li").remove();
@@ -131,7 +128,7 @@ daftarRiwayat.addEventListener("click", function (e) {
     }
 });
 
-// ---- Tombol kosongkan ----
+
 document.getElementById("btn-kosong").addEventListener("click", function () {
     form.reset();
     [fAcara, fTotal, fOrang].forEach((el) => tampilError(el, ""));

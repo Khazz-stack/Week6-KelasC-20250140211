@@ -30,7 +30,6 @@ header p { color: var(--abu); margin: .6rem 0 1.5rem; }
 .panel { background: #fff; border: 1px solid var(--garis); border-top: 0; padding: 1.5rem; }
 .panel[hidden] { display: none; }
 
-/* katalog */
 .toolbar { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: .75rem; }
 .toolbar input { flex: 1 1 220px; }
 input, select {
@@ -52,7 +51,6 @@ tbody tr:hover { background: #fff6cc; }
 .loading-bar::after { content: ""; display: block; height: 100%; width: 35%; background: var(--biru); animation: geser 1s ease-in-out infinite; }
 @keyframes geser { from { margin-left: -35%; } to { margin-left: 100%; } }
 
-/* form */
 .dua-kolom { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 @media (max-width: 700px) { .dua-kolom { grid-template-columns: 1fr; } }
 form { display: grid; gap: 1rem; align-content: start; }

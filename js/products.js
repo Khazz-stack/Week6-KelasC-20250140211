@@ -1,4 +1,3 @@
-// ===== Katalog harga: Fetch API =====
 const URL_PRODUK = "https://dummyjson.com/products";
 
 const tbody = document.getElementById("isi-tabel");
