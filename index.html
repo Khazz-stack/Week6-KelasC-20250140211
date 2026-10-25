@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kasir Kecil</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Kasir Kecil</h1>
+            <p>Cek harga produk, lalu hitung patungannya.</p>
+        </header>
+
+        <div class="tabs" role="tablist">
+            <button class="tab aktif" role="tab" data-target="panel-katalog">Katalog harga</button>
+            <button class="tab" role="tab" data-target="panel-patungan">Hitung patungan</button>
+        </div>
+
+        <!-- PANEL 1: FETCH API -->
+        <section id="panel-katalog" class="panel">
+            <div class="toolbar">
+                <label for="cari" class="sr">Cari produk</label>
+                <input type="search" id="cari" placeholder="Cari nama produk...">
+                <label for="urut" class="sr">Urutkan</label>
+                <select id="urut">
+                    <option value="default">Urutan asli</option>
+                    <option value="nama">Nama A–Z</option>
+                    <option value="murah">Harga termurah</option>
+                    <option value="mahal">Harga termahal</option>
+                </select>
+            </div>
+            <p id="info-katalog" class="info" role="status" aria-live="polite"></p>
+            <div class="tabel-scroll">
+                <table>
+                    <thead><tr><th>Produk</th><th>Kategori</th><th class="kanan">Harga</th></tr></thead>
+                    <tbody id="isi-tabel"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- PANEL 2: FORM -->
+        <section id="panel-patungan" class="panel" hidden>
+            <div class="dua-kolom">
+                <form id="form-bagi" novalidate>
+                    <div class="baris">
+                        <label for="acara">Nama acara</label>
+                        <input type="text" id="acara" placeholder="Contoh: Makan bareng kelas">
+                        <span class="salah" id="salah-acara"></span>
+                    </div>
+                    <div class="baris">
+                        <label for="total">Total tagihan (Rp)</label>
+                        <input type="number" id="total" min="0" step="1000" placeholder="250000">
+                        <span class="salah" id="salah-total"></span>
+                    </div>
+                    <div class="baris">
+                        <label for="orang">Jumlah orang</label>
+                        <input type="number" id="orang" min="1" max="50" value="4">
+                        <span class="salah" id="salah-orang"></span>
+                    </div>
+                    <div class="baris">
+                        <label for="tip">Tip / servis: <output id="nilai-tip">0</output>%</label>
+                        <input type="range" id="tip" min="0" max="25" step="1" value="0">
+                    </div>
+                    <div class="baris cek">
+                        <input type="checkbox" id="bulat" checked>
+                        <label for="bulat">Bulatkan ke atas per Rp 500</label>
+                    </div>
+                    <div class="tombol">
+                        <button type="submit" class="utama">Simpan ke riwayat</button>
+                        <button type="button" id="btn-kosong">Kosongkan</button>
+                    </div>
+                </form>
+
+                <div>
+                    <div class="hasil" id="hasil" aria-live="polite">
+                        <span class="label">Tiap orang bayar</span>
+                        <strong id="per-orang">Rp 0</strong>
+                        <span id="rincian" class="kecil">Isi total tagihan untuk mulai menghitung.</span>
+                    </div>
+                    <h2>Riwayat</h2>
+                    <ul id="riwayat"><li class="kosong">Belum ada yang disimpan.</li></ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script src="js/form.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+:root {
+    --ink: #1b1b3a;
+    --biru: #3b5bdb;
+    --biru-tua: #2b45b0;
+    --kuning: #ffd43b;
+    --latar: #f3f5fb;
+    --garis: #d9deee;
+    --merah: #c92a2a;
+    --abu: #5f6785;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0; background: var(--latar); color: var(--ink);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif; line-height: 1.5;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+header h1 { margin: 0; font-size: 2.2rem; letter-spacing: -.5px; }
+header h1::after { content: ""; display: block; width: 3.5rem; height: 6px; background: var(--kuning); margin-top: .3rem; }
+header p { color: var(--abu); margin: .6rem 0 1.5rem; }
+.sr { position: absolute; left: -9999px; }
+:focus-visible { outline: 3px solid var(--kuning); outline-offset: 2px; }
+
+.tabs { display: flex; gap: .25rem; border-bottom: 2px solid var(--garis); }
+.tab {
+    font: inherit; border: 0; background: none; cursor: pointer;
+    padding: .7rem 1.1rem; color: var(--abu); border-bottom: 4px solid transparent; margin-bottom: -2px;
+}
+.tab:hover { color: var(--ink); }
+.tab.aktif { color: var(--ink); font-weight: 700; border-bottom-color: var(--biru); }
+.panel { background: #fff; border: 1px solid var(--garis); border-top: 0; padding: 1.5rem; }
+.panel[hidden] { display: none; }
+
+/* katalog */
+.toolbar { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: .75rem; }
+.toolbar input { flex: 1 1 220px; }
+input, select {
+    font: inherit; padding: .55rem .7rem; border: 2px solid var(--garis);
+    border-radius: 4px; background: #fff; color: var(--ink);
+}
+input:focus, select:focus { border-color: var(--biru); }
+.info { margin: 0 0 .75rem; color: var(--abu); font-size: .9rem; min-height: 1.4em; }
+.info.error { color: var(--merah); font-weight: 700; }
+.info button { margin-left: .5rem; }
+.tabel-scroll { overflow-x: auto; max-height: 460px; overflow-y: auto; border: 1px solid var(--garis); }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .6rem .8rem; text-align: left; }
+th { position: sticky; top: 0; background: var(--ink); color: #fff; font-weight: 600; }
+tbody tr:nth-child(even) { background: #f7f8fd; }
+tbody tr:hover { background: #fff6cc; }
+.kanan { text-align: right; font-variant-numeric: tabular-nums; }
+.loading-bar { height: 4px; background: var(--garis); overflow: hidden; margin-bottom: .75rem; }
+.loading-bar::after { content: ""; display: block; height: 100%; width: 35%; background: var(--biru); animation: geser 1s ease-in-out infinite; }
+@keyframes geser { from { margin-left: -35%; } to { margin-left: 100%; } }
+
+/* form */
+.dua-kolom { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media (max-width: 700px) { .dua-kolom { grid-template-columns: 1fr; } }
+form { display: grid; gap: 1rem; align-content: start; }
+.baris { display: grid; gap: .3rem; }
+label { font-weight: 700; font-size: .92rem; }
+input.salah-input { border-color: var(--merah); background: #fff5f5; }
+.salah { color: var(--merah); font-size: .85rem; }
+.salah:empty { display: none; }
+.baris.cek { grid-template-columns: auto 1fr; align-items: center; gap: .5rem; }
+.baris.cek label { font-weight: 400; }
+input[type="range"] { padding: 0; accent-color: var(--biru); }
+button {
+    font: inherit; cursor: pointer; padding: .6rem 1rem; border: 2px solid var(--ink);
+    background: #fff; color: var(--ink); border-radius: 4px;
+}
+button:hover { background: var(--kuning); }
+button.utama { background: var(--biru); border-color: var(--biru); color: #fff; font-weight: 700; }
+button.utama:hover { background: var(--biru-tua); }
+.tombol { display: flex; gap: .6rem; flex-wrap: wrap; }
+
+.hasil { background: var(--ink); color: #fff; padding: 1.25rem; border-radius: 4px; display: grid; gap: .2rem; border-left: 8px solid var(--kuning); }
+.hasil .label { color: #b9c0e0; font-size: .9rem; }
+.hasil strong { font-size: 2rem; }
+.kecil { font-size: .85rem; color: #b9c0e0; }
+h2 { font-size: 1.1rem; margin: 1.5rem 0 .5rem; }
+#riwayat { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+#riwayat li { display: flex; justify-content: space-between; gap: .75rem; align-items: center; padding: .6rem .8rem; border: 1px solid var(--garis); border-radius: 4px; }
+#riwayat li.kosong { color: var(--abu); border-style: dashed; }
+#riwayat .detail { display: grid; }
+#riwayat .detail small { color: var(--abu); }
+#riwayat button { padding: .25rem .6rem; font-size: .85rem; }
+
+@media (prefers-reduced-motion: reduce) { .loading-bar::after { animation: none; width: 100%; } }
